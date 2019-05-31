@@ -12,7 +12,7 @@
 
     <body>
         <div class="container">
-            <h1>Enseignants & Etudiants</h1>
+            <h1>MDI mini App</h1>
             <main id="app">
             <router-view></router-view>
             </main>
@@ -41,7 +41,7 @@
                 <b>Prénoms:</b>
                 <p>{{ enseignant.firstName }}</p>
                 <b>departement:</b>
-                <p>{{etudiant.departement}}</p>
+                <p>{{enseignant.departement}}</p>
                 <br/>
 
                 <b>Etudiants enseignés:</b>
@@ -49,7 +49,7 @@
                 <br/>
                 <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
                 <a>
-                    <router-link to="/">Retour à la liste</router-link>
+                    <router-link to="/enseignants">Retour à la liste</router-link>
                 </a>
             </div>
         </template>
@@ -61,12 +61,6 @@
                     <router-link :to="{path: '/add-etudiant'}">
                         <span class="glyphicon glyphicon-plus"></span>
                             Ajouter un étudiant
-                    </router-link>
-                    </a>
-                    <a class="btn btn-default">
-                    <router-link :to="{path: '/add-enseignant'}">
-                        <span class="glyphicon glyphicon-plus"></span>
-                            Ajouter un enseignant
                     </router-link>
                     </a>
                 </div> 
@@ -103,19 +97,27 @@
                     </tr>
                     </tbody>
                 </table>
+                <div class="actions">
+                    <a class="btn btn-default">
+                    <router-link :to="{path: '/enseignants'}">
+                        <span class="glyphicon glyphicon-user"></span>
+                            Enseignants
+                    </router-link>
+                    </a>
+                </div>
             </div>
-            <div class="actions">
-                <a class="btn btn-default">
-                <router-link :to="{path: '/enseignants'}">
-                    <span class="glyphicon glyphicon-user"></span>
-                        Enseignants
-                </router-link>
-                </a>
-            </div>
-            
         </template>
+
         <template id="enseignant-list">
-            <div >          
+            <div > 
+                <div class="actions">
+                    <a class="btn btn-default">
+                        <router-link :to="{path: '/add-enseignant'}">
+                            <span class="glyphicon glyphicon-plus"></span>
+                                Ajouter un enseignant
+                        </router-link>
+                    </a>
+                </div>          
                 <h3>Liste des enseignants</h3>
                 <table class="table">
                 <thead>
@@ -146,9 +148,18 @@
                      </tr>
                 </tbody>
             </table>
-        </div>
-    </template>
-    <template id="add-etudiant">
+               <div class="actions">
+                    <a class="btn btn-default">
+                    <router-link :to="{path: '/'}">
+                        <span class="glyphicon glyphicon-user"></span>
+                            Etudiants
+                    </router-link>
+                    </a>
+                </div>
+            </div>
+        </template>
+
+        <template id="add-etudiant">
             <div>
                 <h2>Ajouter un nouvel étudiant</h2>
                 <form @submit="createEtu">
@@ -242,7 +253,7 @@
         </div>
         <button type="submit" class="btn btn-primary">Enregistrer</button>
         <a class="btn btn-default">
-          <router-link to="/">Annuler</router-link>
+          <router-link to="/enseignants">Annuler</router-link>
         </a>
       </form>
     </div>
@@ -269,7 +280,7 @@
         <p>êtes vous sûr de cette action?</p>
         <button type="submit" class="btn btn-danger">Supprimer</button>
         <a class="btn btn-default">
-          <router-link to="/">Annuler</router-link>
+          <router-link to="/enseignants">Annuler</router-link>
         </a>
       </form>
     </div>
