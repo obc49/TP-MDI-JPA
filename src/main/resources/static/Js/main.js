@@ -222,16 +222,29 @@ var EnseignantDelete = Vue.extend({
   }
 });
 
+var checkedID=[];
+
 var AddEnseignant = Vue.extend({
   template: '#add-enseignant',
   data() {
     return {
-      enseignant: {lastName: '',firstName:'', departement: ''}
+      enseignant: {lastName: '',firstName:'', departement: ''},
+      allEtudiants:[],
+      checkedID: []
     }
   },
-  methods: {
+  mounted() {
+      etudiants.getEtudiants(r => {this.allEtudiants = r.data; allEtudiants = r.data})
+    },
+ methods: {
+
     createEns() {
       enseignants.createEnseignant(this.enseignant, r => router.push('/'))
+    },
+    
+    ajoutID(){
+        this.checkedID = findEtudiant(this.$route.params.etudiant_id)
+        console.log(this.checkedID)
     }
   }
 });

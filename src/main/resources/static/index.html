@@ -81,7 +81,7 @@
                         <!-- tr v-for="etudiant in allEtudiants | filterBy searchKey in 'name'" -->
                         <td>
                             <a>
-                            <router-link :to="{name: 'etudiant', params: {etudiant_id: etudiant.id}}">{{ etudiant.lastName }}</router-link>
+                               <router-link :to="{name: 'etudiant', params: {etudiant_id: etudiant.id}}">{{ etudiant.lastName }}</router-link>
                             </a>
                         </td>
                         <td>{{ etudiant.firstName }}</td>
@@ -200,6 +200,30 @@
                         <label for="add-departement">Département</label>
                         <input class="form-control" id="add-departement" v-model="enseignant.departement"required/>
                     </div>
+                    <template id="etudiant-list">
+                        <table class="table">
+                            <p>Etudiants</p> 
+                            <thead>
+                            <tr>
+                                <th>Nom</th>
+                                <th>Prénoms</th>
+                                <th>Filière</th>
+                            </tr>
+                            </thead>
+                        <tbody>
+                        <tr v-for="etudiant in  allEtudiants">
+                            <!-- tr v-for="etudiant in allEtudiants" -->
+                            <!-- tr v-for="etudiant in allEtudiants | filterBy searchKey in 'name'" -->
+                            <td>
+                                <input type="checkbox" id="checkbox" :value = "etudiant.id" v-model="checkedID" >
+                                {{ etudiant.lastName }}
+                            </td>
+                            <td>{{ etudiant.firstName }}</td>
+                            <td>{{ etudiant.filiere }}</td>
+                        </tr>
+                        </tbody>
+                        </table>
+                    </template>
                     <button type="submit" class="btn btn-primary">Ajouter</button>
                     <a class="btn btn-default">
                         <router-link to="/enseignants">Annuler</router-link>
