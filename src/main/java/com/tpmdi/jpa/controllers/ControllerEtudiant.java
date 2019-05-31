@@ -1,12 +1,12 @@
 package com.tpmdi.jpa.controllers;
 
+import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -38,34 +38,66 @@ public class ControllerEtudiant {
         return this.etudiants.save(etudiant);
     }
     
-    @GetMapping("/{id}") 
+   /* @GetMapping("/{id}") 
     public Etudiants getEtudiant(@PathVariable Long id){
         return this.etudiants.findById(id).orElseThrow(() -> 
                 new ResourceNotFound("Etudiants", id)
         );
+    }*/
+    @GetMapping("/{id}") 
+    public ResponseEntity<Etudiants> getEtudiant(@PathVariable Long id) {
+        Optional<Etudiants> etudiant = etudiants.findById(id);
+        if (!etudiant.isPresent()) {
+            //log.error("Id " + id + " is not existed");
+            ResponseEntity.badRequest().build();
+        }
+
+        return ResponseEntity.ok(etudiant.get());
     }
     
     @GetMapping()
-    public Page<Etudiants> getEtudiants(Pageable pageable){
-        return this.etudiants.findAll(pageable);
+    public ResponseEntity<List<Etudiants>> getEtudiants() {
+        return ResponseEntity.ok(etudiants.findAll());
     }
     
-    @PutMapping()
-    public Etudiants updateEtudiant(@Valid @RequestBody Etudiants etudiant){
-        return this.etudiants.findById(etudiant.getId()).map((toUpdate) -> {
+    /*@PutMapping()
+    public Etudiants updateEtudiant(@PathVariable Long id, @Valid @RequestBody Etudiants etudiant){
+        return this.etudiants.findById(id).map((toUpdate) -> {
             toUpdate.setFirstName(etudiant.getFirstName());
             toUpdate.setLastName(etudiant.getLastName());
             toUpdate.setFiliere(etudiant.getFiliere());
             return this.etudiants.save(toUpdate);
         }).orElseThrow(() -> new ResourceNotFound("Etudiants", etudiant.getId()));
+    }*/
+    
+    @PutMapping("/{id}")
+    public ResponseEntity<Etudiants> updateEtudiant(@PathVariable Long id, @Valid @RequestBody Etudiants etudiant) {
+        if (!etudiants.findById(id).isPresent()) {
+            //log.error("Id " + id + " is not existed");
+            ResponseEntity.badRequest().build();
+        }
+
+        return ResponseEntity.ok(etudiants.save(etudiant));
     }
     
-    @DeleteMapping("/{id}") 
+    /*@DeleteMapping("/{id}") 
     public ResponseEntity deleteEtudiant(@PathVariable Long id){
         return this.etudiants.findById(id).map((toDelete) -> {
             this.etudiants.delete(toDelete);
             return ResponseEntity.ok("Etudiant id " + id + " deleted");
         }).orElseThrow(() -> new ResourceNotFound("Etudiants", id));
+    }*/
+    
+    @DeleteMapping("/{id}")
+    public ResponseEntity deleteEtudiant(@PathVariable Long id) {
+        if (!etudiants.findById(id).isPresent()) {
+            //log.error("Id " + id + " is not existed");
+            ResponseEntity.badRequest().build();
+        }
+
+       etudiants.deleteById(id);
+
+        return ResponseEntity.ok().build();
     }
     
     @GetMapping("/{id}/enseignants")
@@ -74,5 +106,4 @@ public class ControllerEtudiant {
             return etudiant.getEnseignants();
         }).orElseThrow(() -> new ResourceNotFound("Etudiants", id));
     }
-    
 }
