@@ -36,6 +36,7 @@ services:
       - db
     ports : 
       - 8000:8000
+    command: mvn clean spring-boot:run
 volumes:
   ma-base:
     driver: local
