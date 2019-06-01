@@ -35,7 +35,7 @@ Pour lancer l'application, vous devez taper les commandes ci-dessous dans le ré
 Il faut également s'assurer que votre Docker local est en cours d'exécution.
 
 - docker-compose up
-- mvn clean spring:run
+- mvn clean spring-boot:run
 
 Ensite ouvrez votre navigateur et vous pourrez acceder à l'application par :
 
