@@ -1,25 +1,41 @@
 version: '3'
 services:
-  mysql:
-    container_name: mysqlServer
-    image: mysql/mysql-server:5.7
-    environment:
-      MYSQL_DATABASE: mydatabases
-      MYSQL_ROOT_PASSWORD: password
-      MYSQL_ROOT_HOST: '%'
-    ports:
-    - "127.0.0.1:3306:3306"
+  db:
+    image: mysql:latest
+    container_name: mysql-docker
     restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: 'password'
+      MYSQL_DATABASE: 'mydatabases'
+      MYSQL_USER: 'root'
+      MYSQL_PASSWORD: 'password'
+
     volumes:
-    - /var/lib/mysql-data:/var/lib/mysql
-  myvuejs:
-    build: .
-    volumes:
-    - .:/app
-    - ~/.m2:/root/.m2
-    working_dir: /app
+      - ma-base:/var/lib/mysql
+
     ports:
-    - 8000:8000
-    command: mvn clean spring-boot:run
+      - 3306:3306
+    expose:
+      - 3306
+
+  myserver:
+    build: .
+    image: miniapp
+    container_name: miniappserver
+    restart: always
+    links:
+      - db:db
+    environment:
+
+      - DATABASE_HOST=db
+      - DATABASE_USER=root
+      - DATABASE_PASSWORD=password
+      - DATABASE_NAME=mydatabases
+      - DATABASE_PORT=3306
     depends_on:
-    - mysql
+      - db
+    ports : 
+      - 8000:8000
+volumes:
+  ma-base:
+    driver: local
