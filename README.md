@@ -23,6 +23,7 @@ s'afficher également mais cette partie est en développement.
 le shema de notre modèle:
 
 
+![class_diagram](./class_diagramm.png)
 
 
 
