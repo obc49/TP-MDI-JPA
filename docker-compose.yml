@@ -3,15 +3,15 @@ version: '3'
        mysql57:
           image: mysql/mysql-server:5.7
           restart: unless-stopped
-          container_name: mysql57-container
+          container_name: mysql57
           ports:
-              - "127.0.0.1:3306:3306"
+          - "127.0.0.1:3306:3306"
           environment:
-                MYSQL_DATABASE: mydatabases
-                MYSQL_ROOT_PASSWORD: password
-                MYSQL_ROOT_HOST: '%'
+             MYSQL_DATABASE: mydatabases
+             MYSQL_ROOT_PASSWORD: password
+             MYSQL_ROOT_HOST: '%'
           volumes:
-            - /var/lib/mysql57-data:/var/lib/mysql
+          - /var/lib/mysql57-data:/var/lib/mysql
 
       crud-mysql-vuejs:
         build: .
@@ -21,6 +21,6 @@ version: '3'
         working_dir: /app
         ports:
         - 8000:8000
-        command: mvn clean spring-boot:run
+        command: mvn clean spring:run
         depends_on:
         - mysql57
