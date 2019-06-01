@@ -1,6 +1,6 @@
 version: '3'
 services:
-  mysql57:
+  mysql:
     image: mysql/mysql-server:5.7
     restart: unless-stopped
     container_name: mysql57
@@ -9,7 +9,6 @@ services:
     environment:
       MYSQL_DATABASE: mydatabases
       MYSQL_ROOT_PASSWORD: password
-      MYSQL_ROOT_HOST: '%'
     volumes:
     - /var/lib/mysql57-data:/var/lib/mysql
   crud-mysql-vuejs:
@@ -20,6 +19,6 @@ services:
     working_dir: /app
     ports:
     - 8000:8000
-    command: mvn clean spring:run
+    command: mvn clean spring-boot-maven-plugin:run
     depends_on:
     - mysql57

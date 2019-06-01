@@ -234,81 +234,80 @@
 
 
 
-  <template id="etudiant-edit">
-    <div>
-      <h2>Modifier Etudiant</h2>
-      <form @submit="updateEtu">
-        <div class="form-group">
-          <label for="edit-lastName">Nom</label>
-          <input class="form-control" id="edit-lastName" v-model="etudiant.lastName" required/>
-        </div>
-        <div class="form-group">
-          <label for="edit-firstName">Prénoms</label>
-          <input class="form-control" id="edit-firstName" v-model="etudiant.firstName">
-        </div>
-        <div class="form-group">
-          <label for="edit-filiere">Filière </label>
-          <input type="text" class="form-control" id="edit-filiere" v-model="etudiant.filiere"/>
-        </div>
-        <button type="submit" class="btn btn-primary">Enregistrer</button>
-        <a class="btn btn-default">
-          <router-link to="/">Annuler</router-link>
-        </a>
-      </form>
-    </div>
-  </template>
+        <template id="etudiant-edit">
+            <div>
+            <h2>Modifier Etudiant</h2>
+            <form @submit="updateEtu">
+                <div class="form-group">
+                <label for="edit-lastName">Nom</label>
+                <input class="form-control" id="edit-lastName" v-model="etudiant.lastName" required/>
+                </div>
+                <div class="form-group">
+                <label for="edit-firstName">Prénoms</label>
+                <input class="form-control" id="edit-firstName" v-model="etudiant.firstName">
+                </div>
+                <div class="form-group">
+                <label for="edit-filiere">Filière </label>
+                <input type="text" class="form-control" id="edit-filiere" v-model="etudiant.filiere"/>
+                </div>
+                <button type="submit" class="btn btn-primary">Enregistrer</button>
+                <a class="btn btn-default">
+                <router-link to="/">Annuler</router-link>
+                </a>
+            </form>
+            </div>
+        </template>
 
 
-  <template id="enseignant-edit">
-    <div>
-      <h2>Modifier Enseignant</h2>
-      <form @submit="updateEns">
-        <div class="form-group">
-          <label for="edit-lastNameEns">Nom</label>
-          <input class="form-control" id="edit-lastNameEns" v-model="enseignant.lastName" required/>
-        </div>
-        <div class="form-group">
-          <label for="edit-firstNameEns">Prénoms</label>
-          <input class="form-control" id="edit-firstNameEns" v-model="enseignant.firstName">
-        </div>
-        <div class="form-group">
-          <label for="edit-departement">Département </label>
-          <input type="text" class="form-control" id="edit-departement" v-model="enseignant.departement"/>
-        </div>
-        <button type="submit" class="btn btn-primary">Enregistrer</button>
-        <a class="btn btn-default">
-          <router-link to="/enseignants">Annuler</router-link>
-        </a>
-      </form>
-    </div>
-  </template>
+        <template id="enseignant-edit">
+            <div>
+            <h2>Modifier Enseignant</h2>
+            <form @submit="updateEns">
+                <div class="form-group">
+                <label for="edit-lastNameEns">Nom</label>
+                <input class="form-control" id="edit-lastNameEns" v-model="enseignant.lastName" required/>
+                </div>
+                <div class="form-group">
+                <label for="edit-firstNameEns">Prénoms</label>
+                <input class="form-control" id="edit-firstNameEns" v-model="enseignant.firstName">
+                </div>
+                <div class="form-group">
+                <label for="edit-departement">Département </label>
+                <input type="text" class="form-control" id="edit-departement" v-model="enseignant.departement"/>
+                </div>
+                <button type="submit" class="btn btn-primary">Enregistrer</button>
+                <a class="btn btn-default">
+                <router-link to="/enseignants">Annuler</router-link>
+                </a>
+            </form>
+            </div>
+        </template>
 
-  <template id="etudiant-delete">
-    <div>
-      <h2>Supprimer l'étudiant: {{ etudiant.lastName }} {{ etudiant.firstName }}</h2>
-      <form @submit="deleteEtu">
-        <p>êtes vous sûr de cette action?</p>
-        <button type="submit" class="btn btn-danger">Supprimer</button>
-        <a class="btn btn-default">
-          <router-link to="/">Annuler</router-link>
-        </a>
-      </form>
-    </div>
-  </template>
+        <template id="etudiant-delete">
+            <div>
+            <h2>Supprimer l'étudiant: {{ etudiant.lastName }} {{ etudiant.firstName }}</h2>
+            <form @submit="deleteEtu">
+                <p>êtes vous sûr de cette action?</p>
+                <button type="submit" class="btn btn-danger">Supprimer</button>
+                <a class="btn btn-default">
+                <router-link to="/">Annuler</router-link>
+                </a>
+            </form>
+            </div>
+        </template>
 
-
-   <template id="enseignant-delete">
-    <div>
-      <h2>Supprimer l'enseignant: {{ enseignant.lastName }} {{enseignant.firstName }}</h2>
-      <form @submit="deleteEns">
-        <p>êtes vous sûr de cette action?</p>
-        <button type="submit" class="btn btn-danger">Supprimer</button>
-        <a class="btn btn-default">
-          <router-link to="/enseignants">Annuler</router-link>
-        </a>
-      </form>
-    </div>
-  </template>
+        <template id="enseignant-delete">
+            <div>
+            <h2>Supprimer l'enseignant: {{ enseignant.lastName }} {{enseignant.firstName }}</h2>
+            <form @submit="deleteEns">
+                <p>êtes vous sûr de cette action?</p>
+                <button type="submit" class="btn btn-danger">Supprimer</button>
+                <a class="btn btn-default">
+                <router-link to="/enseignants">Annuler</router-link>
+                </a>
+            </form>
+            </div>
+        </template>
 
 
 
