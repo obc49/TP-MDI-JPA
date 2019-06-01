@@ -8,3 +8,5 @@
  
 
 ### TP Backend (JPA) et Frontend (Vue.js)
+
+## Fonctionnemet de l'applical
