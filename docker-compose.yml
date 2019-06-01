@@ -21,4 +21,4 @@ services:
     - 8000:8000
     command: mvn clean spring-boot-maven-plugin:run
     depends_on:
-    - mysql57
+    - mysql

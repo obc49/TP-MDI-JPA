@@ -257,10 +257,10 @@ var router = new VueRouter({
 		{path: '/add-etudiant', component: AddEtudiant},
 		{path: '/etudiant/:etudiant_id/edit', component: EtudiantEdit, name: 'etudiant-edit'},
         {path: '/etudiant/:etudiant_id/delete', component: EtudiantDelete, name: 'etudiant-delete'},
-        {path: '/enseignant/:enseignant_id', component: Enseignant, name: 'enseignant'},
+        {path: '/enseignants/:enseignant_id', component: Enseignant, name: 'enseignant'},
 		{path: '/add-enseignant', component: AddEnseignant},
-		{path: '/enseignant/:enseignant_id/edit', component: EnseignantEdit, name: 'enseignant-edit'},
-		{path: '/enseignant/:enseignant_id/delete', component: EnseignantDelete, name: 'enseignant-delete'}
+		{path: '/enseignants/:enseignant_id/edit', component: EnseignantEdit, name: 'enseignant-edit'},
+		{path: '/enseignants/:enseignant_id/delete', component: EnseignantDelete, name: 'enseignant-delete'}
 	]
 });
 
