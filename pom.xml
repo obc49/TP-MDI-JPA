@@ -11,7 +11,7 @@
 	<groupId>com.tpmdi.jpa</groupId>
 	<artifactId>JpaRestApplication</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>JpaRestApplicationAA</name>
+	<name>JpaRestApplication</name>
 	<description>project for Spring Boot</description>
 
 	<properties>
@@ -48,8 +48,10 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<finalName>japResApplication</finalName>
+				</configuration>
 			</plugin>
-			
 		</plugins>
 	</build>
 

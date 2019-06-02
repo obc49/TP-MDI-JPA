@@ -9,7 +9,7 @@ services:
       MYSQL_DATABASE: 'mydatabases'
       MYSQL_USER: 'root'
       MYSQL_PASSWORD: 'password'
-
+    
     volumes:
       - ma-base:/var/lib/mysql
 
@@ -17,7 +17,6 @@ services:
       - 3306:3306
     expose:
       - 3306
-
   myserver:
     build: .
     image: miniapp
@@ -26,7 +25,6 @@ services:
     links:
       - db:db
     environment:
-
       - DATABASE_HOST=db
       - DATABASE_USER=root
       - DATABASE_PASSWORD=password
@@ -36,7 +34,7 @@ services:
       - db
     ports : 
       - 8000:8000
-    command: mvn clean spring-boot:run
+   
 volumes:
   ma-base:
     driver: local
