@@ -31,7 +31,7 @@ le shema de notre modèle:
 
 ## Lancement de l'application
 
-##Première méthode :
+### Première méthode :
 
 Pour lancer l'application, vous devez taper les commandes ci-dessous dans le répertoire racine du projet
 Il faut également s'assurer que votre Docker local est en cours d'exécution.
@@ -43,7 +43,7 @@ Ensuite ouvrez votre navigateur et vous pourrez acceder à l'application par :
 
 - localhost:8000
 
-##Deuxième méthode :
+### Deuxième méthode :
 
 - clonez le depot
 - Installez mySql server 5.7
@@ -51,8 +51,7 @@ Ensuite ouvrez votre navigateur et vous pourrez acceder à l'application par :
 - Demarrez le serveur mysql
   systemctl start mysql
 - Autorisez l'accès ou donnez les privilèges à l'utilisateur "root" avec le mot de passe "passsword" si ce n'est pas le cas
- GRANT ALL PRIVILEGES ON *.* TO 'root'@'localhost' IDENTIFIED BY 'password' ;
- 
+ GRANT ALL PRIVILEGES ON *.* TO 'root'@'localhost' IDENTIFIED BY 'password';
  FLUSH PRIVILEGES;
  
 - Executez l'application java Spring boot
