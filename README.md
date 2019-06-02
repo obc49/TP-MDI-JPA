@@ -47,7 +47,7 @@ Ensuite ouvrez votre navigateur et vous pourrez acceder à l'application par :
 
 - clonez le depot
 - Installez mySql server 5.7
-  
+- Creez une base de données "mydatabases" (un fichier script.sql pour la creation de la base de données et des tables se trouve dans le repertoire du projet)
 - Demarrez le serveur mysql : systemctl start mysql
 - Autorisez l'accès ou donnez les privilèges à l'utilisateur "root" avec le mot de passe "passsword" si ce n'est pas le cas:
 
