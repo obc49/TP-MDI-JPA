@@ -1,8 +1,8 @@
 version: '3'
 services:
-  db:
-    image: mysql:latest
-    container_name: mysql-docker
+  mabd:
+    image: mysql/mysql-server:5.7
+    container_name: mysql-serv
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: 'password'
@@ -17,24 +17,24 @@ services:
       - 127.0.0.1:3306:3306
     expose:
       - 3306
-  myserver:
+  myappserver:
     build: .
     image: miniapp
     container_name: miniappserver
     restart: always
     links:
-      - db:db
+      - mabd:mabd
     environment:
-      - DATABASE_HOST=db
+      - DATABASE_HOST=madb
       - DATABASE_USER=root
       - DATABASE_PASSWORD=password
       - DATABASE_NAME=mydatabases
       - DATABASE_PORT=3306
-    depends_on:
-      - db
     ports : 
       - 8000:8000
-   
+    command: mvn clean spring-boot:run
+    depends_on:
+      - mabd
 volumes:
   ma-base:
     driver: local

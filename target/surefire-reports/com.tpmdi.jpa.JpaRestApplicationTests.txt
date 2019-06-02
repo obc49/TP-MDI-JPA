@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.tpmdi.jpa.JpaRestApplicationTests
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 5.229 s - in com.tpmdi.jpa.JpaRestApplicationTests
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 5.432 s - in com.tpmdi.jpa.JpaRestApplicationTests
