@@ -48,11 +48,12 @@ Ensuite ouvrez votre navigateur et vous pourrez acceder à l'application par :
 - clonez le depot
 - Installez mySql server 5.7
   
-- Demarrez le serveur mysql
-  systemctl start mysql
-- Autorisez l'accès ou donnez les privilèges à l'utilisateur "root" avec le mot de passe "passsword" si ce n'est pas le cas
- GRANT ALL PRIVILEGES ON *.* TO 'root'@'localhost' IDENTIFIED BY 'password';
- FLUSH PRIVILEGES;
+- Demarrez le serveur mysql : systemctl start mysql
+- Autorisez l'accès ou donnez les privilèges à l'utilisateur "root" avec le mot de passe "passsword" si ce n'est pas le cas:
+
+GRANT ALL PRIVILEGES ON * *.* * TO 'root'@'localhost' IDENTIFIED BY 'password';
+
+FLUSH PRIVILEGES;
  
 - Executez l'application java Spring boot
 - Accedez à l'application via le navigateur à l'adresse : localhost:8000
