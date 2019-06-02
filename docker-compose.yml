@@ -1,6 +1,6 @@
 version: '3'
 services:
-  mabd:
+  madb:
     image: mysql/mysql-server:5.7
     container_name: mysql-serv
     restart: always
@@ -23,7 +23,7 @@ services:
     container_name: miniappserver
     restart: always
     links:
-      - mabd:mabd
+      - madb:madb
     environment:
       - DATABASE_HOST=madb
       - DATABASE_USER=root
@@ -34,7 +34,7 @@ services:
       - 8000:8000
     command: mvn clean spring-boot:run
     depends_on:
-      - mabd
+      - madb
 volumes:
   ma-base:
     driver: local
