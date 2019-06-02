@@ -31,7 +31,7 @@ le shema de notre modèle:
 
 ## Lancement de l'application
 
-### Première méthode :
+### Première méthode : Avec Docker mais nous avons des problèmes qu'on essaie de resoudre  
 
 Pour lancer l'application, vous devez taper les commandes ci-dessous dans le répertoire racine du projet
 Il faut également s'assurer que votre Docker local est en cours d'exécution.
@@ -42,19 +42,19 @@ Il faut également s'assurer que votre Docker local est en cours d'exécution.
 Ensuite ouvrez votre navigateur et vous pourrez acceder à l'application par :
 
 - localhost:8000
+Nous avons également un dockerfile mais qui ne fonctionne pas, alors 
 
 ### Deuxième méthode :
 
 - clonez le depot
 - Installez mySql server 5.7
-- Creez une base de données "mydatabases" (un fichier script.sql pour la creation de la base de données et des tables se trouve dans le repertoire du projet)
-- Demarrez le serveur mysql : systemctl start mysql
+- Se connecter à mysql : mysql -u root -p
 - Autorisez l'accès ou donnez les privilèges à l'utilisateur "root" avec le mot de passe "passsword" si ce n'est pas le cas:
 
 GRANT ALL PRIVILEGES ON * *.* * TO 'root'@'localhost' IDENTIFIED BY 'password';
 
 FLUSH PRIVILEGES;
- 
+- Demarrez le serveur mysql : systemctl start mysql
 - Executez l'application java Spring boot
 - Accedez à l'application via le navigateur à l'adresse : localhost:8000
 
