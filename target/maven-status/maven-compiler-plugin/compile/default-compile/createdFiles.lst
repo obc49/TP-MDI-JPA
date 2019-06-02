@@ -1,0 +1,10 @@
+com/tpmdi/jpa/controllers/ControllerEnseignant.class
+com/tpmdi/jpa/repositories/EtudiantRepository.class
+com/tpmdi/jpa/controllers/ControllerEtudiant.class
+com/tpmdi/jpa/models/ModelAudit.class
+com/tpmdi/jpa/models/Person.class
+com/tpmdi/jpa/repositories/EnseignantRepository.class
+com/tpmdi/jpa/models/Etudiants.class
+com/tpmdi/jpa/models/Enseignants.class
+com/tpmdi/jpa/JpaRestApplication.class
+com/tpmdi/jpa/exceptions/ResourceNotFound.class

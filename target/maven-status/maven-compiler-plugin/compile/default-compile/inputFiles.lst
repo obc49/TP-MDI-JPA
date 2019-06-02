@@ -1,0 +1,10 @@
+/home/roland-kouassi/eclipse-workspace/JpaApplication/src/main/java/com/tpmdi/jpa/repositories/EnseignantRepository.java
+/home/roland-kouassi/eclipse-workspace/JpaApplication/src/main/java/com/tpmdi/jpa/models/ModelAudit.java
+/home/roland-kouassi/eclipse-workspace/JpaApplication/src/main/java/com/tpmdi/jpa/models/Etudiants.java
+/home/roland-kouassi/eclipse-workspace/JpaApplication/src/main/java/com/tpmdi/jpa/repositories/EtudiantRepository.java
+/home/roland-kouassi/eclipse-workspace/JpaApplication/src/main/java/com/tpmdi/jpa/exceptions/ResourceNotFound.java
+/home/roland-kouassi/eclipse-workspace/JpaApplication/src/main/java/com/tpmdi/jpa/controllers/ControllerEnseignant.java
+/home/roland-kouassi/eclipse-workspace/JpaApplication/src/main/java/com/tpmdi/jpa/controllers/ControllerEtudiant.java
+/home/roland-kouassi/eclipse-workspace/JpaApplication/src/main/java/com/tpmdi/jpa/models/Person.java
+/home/roland-kouassi/eclipse-workspace/JpaApplication/src/main/java/com/tpmdi/jpa/models/Enseignants.java
+/home/roland-kouassi/eclipse-workspace/JpaApplication/src/main/java/com/tpmdi/jpa/JpaRestApplication.java

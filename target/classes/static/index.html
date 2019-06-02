@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <title>Mini projet MDI</title>
+        <link href="https://unpkg.com/bootstrap@3.4.0/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link href="Js/main.css" rel="stylesheet"/>
+    </head>
+
+    <body>
+        <div class="container">
+            <h1>MDI mini App</h1>
+            <main id="app">
+            <router-view></router-view>
+            </main>
+        </div>
+
+        <template id="etudiant">
+            <div>
+                <b>Nom:</b>
+                <p>{{ etudiant.lastName }}</p>
+                <b>Prénoms:</b>
+                <p>{{ etudiant.firstName }}</p>
+                <b>Filière:</b>
+                <p>{{etudiant.filiere}}</p>
+                <br/>
+                <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
+                <a>
+                    <router-link to="/">Retour à la liste</router-link>
+                </a>
+            </div>
+        </template>
+
+        <template id="enseignant">
+            <div>
+                <b>Nom:</b>
+                <p>{{ enseignant.lastName }}</p>
+                <b>Prénoms:</b>
+                <p>{{ enseignant.firstName }}</p>
+                <b>departement:</b>
+                <p>{{enseignant.departement}}</p>
+                <br/>
+
+                <b>Etudiants enseignés:</b>
+               
+                <br/>
+                <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
+                <a>
+                    <router-link to="/enseignants">Retour à la liste</router-link>
+                </a>
+            </div>
+        </template>
+
+        <template id="etudiant-list">
+            <div>
+                <div class="actions">
+                    <a class="btn btn-default">
+                    <router-link :to="{path: '/add-etudiant'}">
+                        <span class="glyphicon glyphicon-plus"></span>
+                            Ajouter un étudiant
+                    </router-link>
+                    </a>
+                </div> 
+                
+                <h3>Liste des étudiants</h3>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Nom</th>
+                        <th>Prénoms</th>
+                        <th>Filière</th>
+                        <th class="col-sm-2">Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr v-for="etudiant in  allEtudiants">
+                        <!-- tr v-for="etudiant in allEtudiants" -->
+                        <!-- tr v-for="etudiant in allEtudiants | filterBy searchKey in 'name'" -->
+                        <td>
+                            <a>
+                               <router-link :to="{name: 'etudiant', params: {etudiant_id: etudiant.id}}">{{ etudiant.lastName }}</router-link>
+                            </a>
+                        </td>
+                        <td>{{ etudiant.firstName }}</td>
+                        <td>{{ etudiant.filiere }}</td>
+                        <td>
+                            <a class="btn btn-success btn-xs">
+                                <router-link :to="{name: 'etudiant-edit', params:{etudiant_id:etudiant.id}}">Modifier</router-link>
+                            </a>
+                            <a class="btn btn btn-xs">
+                            <router-link :to="{name: 'etudiant-delete', params:{etudiant_id: etudiant.id}}">Supprimer</router-link>
+                            </a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div class="actions">
+                    <a class="btn btn-default">
+                    <router-link :to="{path: '/enseignants'}">
+                        <span class="glyphicon glyphicon-user"></span>
+                            Enseignants
+                    </router-link>
+                    </a>
+                </div>
+            </div>
+        </template>
+
+        <template id="enseignant-list">
+            <div > 
+                <div class="actions">
+                    <a class="btn btn-default">
+                        <router-link :to="{path: '/add-enseignant'}">
+                            <span class="glyphicon glyphicon-plus"></span>
+                                Ajouter un enseignant
+                        </router-link>
+                    </a>
+                </div>          
+                <h3>Liste des enseignants</h3>
+                <table class="table">
+                <thead>
+                <tr>
+                    <th>Nom</th>
+                    <th>Prénoms</th>
+                    <th>Département</th>
+                    <th class="col-sm-2">Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="enseignant in  allEnseignants">
+                        <td>
+                            <a>
+                              <router-link :to="{name: 'enseignant', params: {enseignant_id: enseignant.id}}">{{ enseignant.lastName }}</router-link>
+                            </a>
+                        </td>
+                        <td>{{ enseignant.firstName }}</td>
+                        <td>{{ enseignant.departement}}</td>
+                        <td>
+                            <a class="btn btn-success btn-xs">
+                            <router-link :to="{name: 'enseignant-edit', params:{enseignant_id:enseignant.id}}">Modifier</router-link>
+                            </a>
+                            <a class="btn btn btn-xs">
+                                <router-link :to="{name: 'enseignant-delete', params:{enseignant_id: enseignant.id}}">Supprimer</router-link>
+                            </a>
+                        </td>
+                     </tr>
+                </tbody>
+            </table>
+               <div class="actions">
+                    <a class="btn btn-default">
+                    <router-link :to="{path: '/'}">
+                        <span class="glyphicon glyphicon-user"></span>
+                            Etudiants
+                    </router-link>
+                    </a>
+                </div>
+            </div>
+        </template>
+
+        <template id="add-etudiant">
+            <div>
+                <h2>Ajouter un nouvel étudiant</h2>
+                <form @submit="createEtu">
+                    <div class="form-group">
+                        <label for="add-lastName">Nom</label>
+                        <input class="form-control" id="add-lastName" v-model="etudiant.lastName" required/>
+                    </div>
+                    <div class="form-group">
+                        <label for="add-firstName">Prénoms</label>
+                        <input class="form-control" id="add-firstName" v-model="etudiant.firstName"required/>
+                    </div>
+                    <div class="form-group">
+                        <label for="add-filiere">Filière</label>
+                        <input class="form-control" id="add-filiere" v-model="etudiant.filiere"required/>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Ajouter</button>
+                    <a class="btn btn-default">
+                        <router-link to="/">Annuler</router-link>
+                    </a>
+                </form>
+            </div>
+        </template>
+
+
+        <template id="add-enseignant">
+            <div>
+                <h2>Ajouter un nouvel enseignant</h2>
+                <form @submit="createEns">
+                    <div class="form-group">
+                        <label for="add-lastNameEns">Nom</label>
+                        <input class="form-control" id="add-lastNameEns" v-model="enseignant.lastName" required/>
+                    </div>
+                    <div class="form-group">
+                        <label for="add-firstNameEns">Prénoms</label>
+                        <input class="form-control" id="add-firstNameEns" v-model="enseignant.firstName"required/>
+                    </div>
+                    <div class="form-group">
+                        <label for="add-departement">Département</label>
+                        <input class="form-control" id="add-departement" v-model="enseignant.departement"required/>
+                    </div>
+                    <template id="etudiant-list">
+                        <table class="table">
+                            <p>Etudiants</p> 
+                            <thead>
+                            <tr>
+                                <th>Nom</th>
+                                <th>Prénoms</th>
+                                <th>Filière</th>
+                            </tr>
+                            </thead>
+                        <tbody>
+                        <tr v-for="etudiant in  allEtudiants">
+                            <!-- tr v-for="etudiant in allEtudiants" -->
+                            <!-- tr v-for="etudiant in allEtudiants | filterBy searchKey in 'name'" -->
+                            <td>
+                                <input type="checkbox" id="checkbox" :value = "etudiant.id" v-model="checkedID" >
+                                {{ etudiant.lastName }}
+                            </td>
+                            <td>{{ etudiant.firstName }}</td>
+                            <td>{{ etudiant.filiere }}</td>
+                        </tr>
+                        </tbody>
+                        </table>
+                    </template>
+                    <button type="submit" class="btn btn-primary">Ajouter</button>
+                    <a class="btn btn-default">
+                        <router-link to="/enseignants">Annuler</router-link>
+                    </a>
+                </form>
+            </div>
+        </template>
+
+
+
+        <template id="etudiant-edit">
+            <div>
+            <h2>Modifier Etudiant</h2>
+            <form @submit="updateEtu">
+                <div class="form-group">
+                <label for="edit-lastName">Nom</label>
+                <input class="form-control" id="edit-lastName" v-model="etudiant.lastName" required/>
+                </div>
+                <div class="form-group">
+                <label for="edit-firstName">Prénoms</label>
+                <input class="form-control" id="edit-firstName" v-model="etudiant.firstName">
+                </div>
+                <div class="form-group">
+                <label for="edit-filiere">Filière </label>
+                <input type="text" class="form-control" id="edit-filiere" v-model="etudiant.filiere"/>
+                </div>
+                <button type="submit" class="btn btn-primary">Enregistrer</button>
+                <a class="btn btn-default">
+                <router-link to="/">Annuler</router-link>
+                </a>
+            </form>
+            </div>
+        </template>
+
+
+        <template id="enseignant-edit">
+            <div>
+            <h2>Modifier Enseignant</h2>
+            <form @submit="updateEns">
+                <div class="form-group">
+                <label for="edit-lastNameEns">Nom</label>
+                <input class="form-control" id="edit-lastNameEns" v-model="enseignant.lastName" required/>
+                </div>
+                <div class="form-group">
+                <label for="edit-firstNameEns">Prénoms</label>
+                <input class="form-control" id="edit-firstNameEns" v-model="enseignant.firstName">
+                </div>
+                <div class="form-group">
+                <label for="edit-departement">Département </label>
+                <input type="text" class="form-control" id="edit-departement" v-model="enseignant.departement"/>
+                </div>
+                <button type="submit" class="btn btn-primary">Enregistrer</button>
+                <a class="btn btn-default">
+                <router-link to="/enseignants">Annuler</router-link>
+                </a>
+            </form>
+            </div>
+        </template>
+
+        <template id="etudiant-delete">
+            <div>
+            <h2>Supprimer l'étudiant: {{ etudiant.lastName }} {{ etudiant.firstName }}</h2>
+            <form @submit="deleteEtu">
+                <p>êtes vous sûr de cette action?</p>
+                <button type="submit" class="btn btn-danger">Supprimer</button>
+                <a class="btn btn-default">
+                <router-link to="/">Annuler</router-link>
+                </a>
+            </form>
+            </div>
+        </template>
+
+        <template id="enseignant-delete">
+            <div>
+            <h2>Supprimer l'enseignant: {{ enseignant.lastName }} {{enseignant.firstName }}</h2>
+            <form @submit="deleteEns">
+                <p>êtes vous sûr de cette action?</p>
+                <button type="submit" class="btn btn-danger">Supprimer</button>
+                <a class="btn btn-default">
+                <router-link to="/enseignants">Annuler</router-link>
+                </a>
+            </form>
+            </div>
+        </template>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-router@3.0.2/dist/vue-router.js"></script>
+    <script src="https://unpkg.com/axios@0.18.0/dist/axios.min.js"></script>
+    <script src="Js/main.js"></script>
+    </body>
+</html>
